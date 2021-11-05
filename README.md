@@ -19,6 +19,10 @@ Install either [Thunderstore Mod Manager](https://www.overwolf.com/app/Thunderst
 
 Follow the instructions from the [BepInEx Docs](https://docs.bepinex.dev/articles/user_guide/installation/index.html) to install BepInEx and then extract [the latest release](https://github.com/PhantomGamers/StarsandUIARFix/releases/latest) of the mod to your `BepInEx\plugins\` directory.
 
+## Support
+
+For support, or to discuss and discover other mods for Starsand, check out the [Starsand Modding Discord](https://discord.gg/ZYVpC6uyY7)
+
 ## Changelog
 
 1.0.0:
