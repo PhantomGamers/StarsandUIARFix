@@ -2,6 +2,13 @@
  
 BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9
 
+Without the fix
+![image](https://user-images.githubusercontent.com/844685/140520391-0b9b22e7-b3f7-4995-bdf7-f744a52ec7fd.png)
+
+With the fix
+![image](https://user-images.githubusercontent.com/844685/140520441-08c099a0-206e-4cad-a3cf-b2205d951b19.png)
+
+
 ## Installation
 
 ### Mod Manager (Recommended)
