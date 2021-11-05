@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>StarsandUIARFix</AssemblyName>
+    <AuthorName>PhantomGamers</AuthorName>
+    <Description>BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9</Description>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>9.0</LangVersion>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Starsand</GameDir>
+    <OutDir Condition="Exists($(GameDir))">$(GameDir)\BepInEx\plugins\$(AuthorName)-$(AssemblyName)</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2020.3.10" IncludeAssets="compile" />
+    <PackageReference Include="Starsand.GameLibs" Version="*-*" IncludeAssets="compile" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+</Project>
