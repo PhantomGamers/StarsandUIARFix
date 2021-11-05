@@ -1,0 +1,9 @@
+{
+  "name": "StarsandUIARFix",
+  "description": "BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9",
+  "version_number": "1.0.0",
+  "dependencies": [
+    "BepInEx-BepInExPack_Starsand-5.4.17"
+  ],
+  "website_url": "https://github.com/PhantomGamers/StarsandUIARFix"
+}
