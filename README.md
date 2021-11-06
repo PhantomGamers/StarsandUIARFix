@@ -8,6 +8,9 @@ Without the fix
 With the fix
 ![image](https://user-images.githubusercontent.com/844685/140520441-08c099a0-206e-4cad-a3cf-b2205d951b19.png)
 
+ScaleFactor fix mode
+![Starsand_LfWEsMO8hO](https://user-images.githubusercontent.com/844685/140591414-8c1d0336-8718-4298-89a1-f49c2e1e6bd9.png)
+
 
 ## Installation
 
