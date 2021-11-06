@@ -19,11 +19,20 @@ Install either [Thunderstore Mod Manager](https://www.overwolf.com/app/Thunderst
 
 Follow the instructions from the [BepInEx Docs](https://docs.bepinex.dev/articles/user_guide/installation/index.html) to install BepInEx and then extract [the latest release](https://github.com/PhantomGamers/StarsandUIARFix/releases/latest) of the mod to your `BepInEx\plugins\` directory.
 
+## Configuration
+
+After launching the game with the mod installed, edit `BepInEx\config\StarsandUIARFix.cfg` with your text editor of choice.  
+Change UseScaleFactor to False to switch to UI stretching mode instead of UI scaling mode.
+
 ## Support
 
 For support, or to discuss and discover other mods for Starsand, check out the [Starsand Modding Discord](https://discord.gg/ZYVpC6uyY7)
 
 ## Changelog
+
+1.0.1:
+
+- Added option to change scale factor of UI instead of stretching from 16:9, enabled by default.
 
 1.0.0:
 
