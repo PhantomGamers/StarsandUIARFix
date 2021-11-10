@@ -15,6 +15,9 @@ namespace StarsandUIARFix
 
         public static ConfigEntry<float> ScaleFactor;
         public static ConfigEntry<bool> UseScaleFactor;
+        public static ConfigEntry<bool> UseResolutionScaleFactor;
+
+        public static float ResolutionScaleFactor => (float)Screen.currentResolution.width / Screen.currentResolution.height / (16 / 9f);
 
         private void Awake()
         {
@@ -35,6 +38,12 @@ namespace StarsandUIARFix
                                      "If true, uses the ScaleFactor value to fix the UI. Otherwise, it will stretch the UI to your AR from the default 16/9 AR."
                                     );
 
+            UseResolutionScaleFactor = Config.Bind("General",
+                                     "UseScaleFactor",
+                                     true,
+                                     "If true, uses the ScaleFactor value calculated from your current resolution instead of the value set in ScaleFactor"
+                                    );
+
             Harmony.CreateAndPatchAll(typeof(Patches));
         }
 
@@ -47,15 +56,15 @@ namespace StarsandUIARFix
         [HarmonyPostfix]
         public static void UpdateGUIAR(UltimateSurvival.GUISystem.GUIController __instance)
         {
-            if(!Plugin.UseScaleFactor.Value)
+            if(Plugin.UseScaleFactor.Value)
             {
-                Plugin.Log.LogInfo("Updating GUI AR!");
-                __instance.m_GUICamera.aspect = 16 / 9f;
+                __instance.Canvas.scaleFactor = Plugin.UseResolutionScaleFactor.Value ? Plugin.ResolutionScaleFactor : Plugin.ScaleFactor.Value;
+                Plugin.Log.LogInfo($"Changed GUI canvas scale factor to {__instance.Canvas.scaleFactor}");
             }
             else
             {
-                Plugin.Log.LogInfo("Updating GUI scale factor!");
-                __instance.Canvas.scaleFactor = Plugin.ScaleFactor.Value;
+                __instance.m_GUICamera.aspect = 16 / 9f;
+                Plugin.Log.LogInfo($"Changed GUICamera aspect ratio to {__instance.m_GUICamera.aspect}");
             }
         }
 
@@ -65,8 +74,9 @@ namespace StarsandUIARFix
         {
             if (Plugin.UseScaleFactor.Value)
             {
-                Plugin.Log.LogInfo("Updating menu scale factor!");
-                GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor = Plugin.ScaleFactor.Value;
+                var canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                canvas.scaleFactor = Plugin.UseResolutionScaleFactor.Value ? Plugin.ResolutionScaleFactor : Plugin.ScaleFactor.Value;
+                Plugin.Log.LogInfo($"Changed GUI canvas scale factor to {canvas.scaleFactor}");
             }
         }
     }

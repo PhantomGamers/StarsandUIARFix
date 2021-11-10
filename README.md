@@ -2,15 +2,19 @@
  
 BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9
 
-Without the fix
+## Screenshots
+
+### Vanilla
+
 ![image](https://user-images.githubusercontent.com/844685/140520391-0b9b22e7-b3f7-4995-bdf7-f744a52ec7fd.png)
 
-With the fix
-![image](https://user-images.githubusercontent.com/844685/140520441-08c099a0-206e-4cad-a3cf-b2205d951b19.png)
+### With the mod
 
-ScaleFactor fix mode
 ![Starsand_LfWEsMO8hO](https://user-images.githubusercontent.com/844685/140591414-8c1d0336-8718-4298-89a1-f49c2e1e6bd9.png)
 
+### With the mod in stretch mode (UseScaleFactor = False) 
+
+![image](https://user-images.githubusercontent.com/844685/140520441-08c099a0-206e-4cad-a3cf-b2205d951b19.png)
 
 ## Installation
 
@@ -25,13 +29,19 @@ Follow the instructions from the [BepInEx Docs](https://docs.bepinex.dev/article
 ## Configuration
 
 After launching the game with the mod installed, edit `BepInEx\config\StarsandUIARFix.cfg` with your text editor of choice.  
-Change UseScaleFactor to False to switch to UI stretching mode instead of UI scaling mode.
+Change UseScaleFactor to False to switch to UI stretching mode instead of UI scaling mode.  
+
+With UseScaleFactor true and UseResolutionScaleFactor false you can specify a custom scale factor in the ScaleFactor config entry.  
 
 ## Support
 
 For support, or to discuss and discover other mods for Starsand, check out the [Starsand Modding Discord](https://discord.gg/ZYVpC6uyY7)
 
 ## Changelog
+
+1.0.2:
+
+- Added option to automatically calculate ideal scale factor, enabled by default.
 
 1.0.1:
 
