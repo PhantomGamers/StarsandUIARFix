@@ -19,8 +19,8 @@ jobs:
       env:
         TCLI_AUTH_TOKEN: ${{ secrets.TCLI_AUTH_TOKEN }}
       run: |
-        tcli build;
-        tcli publish;
+        .\tcli.exe build;
+        .\tcli.exe publish;
     - name: Publish to GitHub
       uses: ncipollo/release-action@v1
       with:
