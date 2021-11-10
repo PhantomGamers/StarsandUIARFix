@@ -10,7 +10,7 @@ BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9
 
 ### With the mod
 
-![Starsand_LfWEsMO8hO](https://user-images.githubusercontent.com/844685/140591414-8c1d0336-8718-4298-89a1-f49c2e1e6bd9.png)
+![Starsand_UKewinOFlr](https://user-images.githubusercontent.com/844685/141055738-8a1fcb38-3adc-4399-9131-c244a173c17a.png)
 
 ### With the mod in stretch mode (UseScaleFactor = False) 
 
