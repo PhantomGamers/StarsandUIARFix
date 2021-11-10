@@ -27,6 +27,8 @@ jobs:
     - name: Publish to GitHub
       uses: ncipollo/release-action@v1
       with:
+        tag: ${{ steps.version.outputs.info }}
+        commit: main
         allowUpdates: true
         omitBodyDuringUpdate: true
         artifactErrorsFailBuild: true
