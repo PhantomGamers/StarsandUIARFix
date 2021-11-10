@@ -24,6 +24,8 @@ jobs:
     - name: Publish to GitHub
       uses: ncipollo/release-action@v1
       with:
+        allowUpdates: true
+        omitBodyDuringUpdate: true
         artifactErrorsFailBuild: true
         artifacts: "build/*.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
