@@ -1,9 +1,7 @@
 name: releases
 
 on: 
-  push:
-    tags:
-    - '*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,10 +13,17 @@ jobs:
       with:
         dotnet-version: '5.0.x'
     - run: msbuild StarsandUIARFix.sln /p:Configuration=Release
+    - name: Get version
+      id: version
+      uses: mavrosxristoforos/get-xml-info@1.0
+      with:
+        xml-file: 'StarsandUIARFix.csproj'
+        xpath: '//Version'
+    -  run: echo "${{ steps.version.outputs.info }}"
     - name: Publish to Thunderstore
       env:
         TCLI_AUTH_TOKEN: ${{ secrets.TCLI_AUTH_TOKEN }}
-      run: .\tcli.exe publish
+      run: .\tcli.exe publish --package-version "${{ steps.version.outputs.info }}"
     - name: Publish to GitHub
       uses: ncipollo/release-action@v1
       with:
