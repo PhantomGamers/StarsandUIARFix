@@ -39,7 +39,7 @@ For support, or to discuss and discover other mods for Starsand, check out the [
 
 ## Changelog
 
-1.0.2:
+1.0.3:
 
 - Added option to automatically calculate ideal scale factor, enabled by default.
 
