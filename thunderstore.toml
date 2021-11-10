@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "PhantomGamers"
 name = "StarsandUIARFix"
-versionNumber = "1.0.5"
+versionNumber = "1.0.6"
 description = "BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9"
 websiteUrl = "https://github.com/PhantomGamers/StarsandUIARFix"
 containsNsfwContent = false
