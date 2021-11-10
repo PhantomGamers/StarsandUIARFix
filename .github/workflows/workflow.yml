@@ -1,0 +1,29 @@
+name: releases
+
+on: 
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: microsoft/setup-msbuild@v1
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - run: msbuild StarsandUIARFix.sln /p:Configuration=Release
+    - name: Publish to Thunderstore
+      env:
+        TCLI_AUTH_TOKEN: ${{ secrets.TCLI_AUTH_TOKEN }}
+      run: |
+        tcli build;
+        tcli publish;
+    - name: Publish to GitHub
+      uses: ncipollo/release-action@v1
+      with:
+        artifactErrorsFailBuild: true
+        artifacts: "build/*.zip"
+        token: ${{ secrets.GITHUB_TOKEN }}

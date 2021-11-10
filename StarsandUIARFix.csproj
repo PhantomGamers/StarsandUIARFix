@@ -5,10 +5,11 @@
     <AssemblyName>StarsandUIARFix</AssemblyName>
     <AuthorName>PhantomGamers</AuthorName>
     <Description>BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>9.0</LangVersion>
     <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Starsand</GameDir>
+    <OutDir>bin/$(Configuration)</OutDir>
     <OutDir Condition="Exists($(GameDir))">$(GameDir)\BepInEx\plugins\$(AuthorName)-$(AssemblyName)</OutDir>
   </PropertyGroup>
 
@@ -25,16 +26,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Update="icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="manifest.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
