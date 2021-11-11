@@ -19,7 +19,6 @@ jobs:
       with:
         xml-file: 'StarsandUIARFix.csproj'
         xpath: '//Version'
-    -  run: echo "${{ steps.version.outputs.info }}"
     - name: Publish to Thunderstore
       env:
         TCLI_AUTH_TOKEN: ${{ secrets.TCLI_AUTH_TOKEN }}
