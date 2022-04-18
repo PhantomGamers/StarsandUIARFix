@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BundleBepInEx : true
+      BundleBepInEx : false
       BepInExVersion : 5
       BepInExArch : x64
       BepInExRuntime : IL2CPP
@@ -82,7 +82,7 @@ jobs:
       env:
         TCLI_AUTH_TOKEN: ${{ secrets.TCLI_AUTH_TOKEN }}
       run: |
-        dotnet tool install -g dotnet-format
+        dotnet tool install -g tcli
         tcli publish --package-version ${{ github.event.inputs.version }}
         if: ${{env.ThunderstoreRelease}}
 
