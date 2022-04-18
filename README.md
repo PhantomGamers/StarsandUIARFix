@@ -1,5 +1,5 @@
 # StarsandUIARFix
- 
+
 BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9
 
 ## Screenshots
@@ -11,10 +11,6 @@ BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9
 ### With the mod
 
 ![Starsand_UKewinOFlr](https://user-images.githubusercontent.com/844685/141055738-8a1fcb38-3adc-4399-9131-c244a173c17a.png)
-
-### With the mod in stretch mode (UseScaleFactor = False) 
-
-![image](https://user-images.githubusercontent.com/844685/140520441-08c099a0-206e-4cad-a3cf-b2205d951b19.png)
 
 ## Installation
 
@@ -28,16 +24,17 @@ Follow the instructions from the [BepInEx Docs](https://docs.bepinex.dev/article
 
 ## Configuration
 
-After launching the game with the mod installed, edit `BepInEx\config\StarsandUIARFix.cfg` with your text editor of choice.  
-Change UseScaleFactor to False to switch to UI stretching mode instead of UI scaling mode.  
-
-With UseScaleFactor true and UseResolutionScaleFactor false you can specify a custom scale factor in the ScaleFactor config entry.  
+After launching the game with the mod installed, edit `BepInEx\config\StarsandUIARFix.cfg` with your text editor of choice.
 
 ## Support
 
 For support, or to discuss and discover other mods for Starsand, check out the [Starsand Modding Discord](https://discord.gg/ZYVpC6uyY7)
 
 ## Changelog
+
+1.1.0:
+
+- Switched fix method to one which should be resolution agnostic. Disabled the fix on the main menu by default as this should not be needed in most cases.
 
 1.0.7:
 
