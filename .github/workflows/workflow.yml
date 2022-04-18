@@ -61,7 +61,8 @@ jobs:
 
     - name: Package without BepInEx
       run: |
-        dotnet build -c Release /p:Version=${{ github.event.inputs.version }} -o out/${{env.PluginName}}
+        mkdir out;
+        dotnet build -c Release /p:Version=${{ github.event.inputs.version }} -o out/${{env.PluginName}};
       if: env.BundleBepInEx == 'false'
 
     - name: Zip build
