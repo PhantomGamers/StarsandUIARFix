@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>StarsandUIARFix</AssemblyName>
     <AuthorName>PhantomGamers</AuthorName>
     <Description>BepInEx mod for Starsand to fix UI with aspect ratios other than 16:9</Description>
-    <Version>1.0.7</Version>
+    <Version>0.0.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Starsand</GameDir>
     <OutDir>bin/$(Configuration)</OutDir>
     <OutDir Condition="Exists($(GameDir))">$(GameDir)\BepInEx\plugins\$(AuthorName)-$(AssemblyName)</OutDir>

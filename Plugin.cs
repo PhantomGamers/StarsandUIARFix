@@ -5,6 +5,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace StarsandUIARFix
 {
@@ -13,11 +14,9 @@ namespace StarsandUIARFix
     {
         public static ManualLogSource Log;
 
-        public static ConfigEntry<float> ScaleFactor;
-        public static ConfigEntry<bool> UseScaleFactor;
-        public static ConfigEntry<bool> UseResolutionScaleFactor;
-
-        public static float ResolutionScaleFactor => (float)Screen.currentResolution.width / Screen.currentResolution.height / (16 / 9f);
+        public static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode;
+        public static ConfigEntry<float> MatchWidthOrHeight;
+        public static ConfigEntry<bool> ApplyToMenu;
 
         private void Awake()
         {
@@ -26,27 +25,29 @@ namespace StarsandUIARFix
             // Plugin startup logic
             Log.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
 
-            ScaleFactor = Config.Bind("General",
-                                      "ScaleFactor",
-                                      1f,
-                                      "Scale Factor for the UI"
-                                     );
+            ScreenMatchMode = Config.Bind(
+                "General",
+                "ScreenMatchMode",
+                CanvasScaler.ScreenMatchMode.MatchWidthOrHeight,
+                "Scale the canvas area with the width as reference, the height as reference, or something in between."
+                );
 
-            UseScaleFactor = Config.Bind("General",
-                                     "UseScaleFactor",
-                                     true,
-                                     "If true, uses the ScaleFactor value to fix the UI. Otherwise, it will stretch the UI to your AR from the default 16/9 AR."
-                                    );
+            MatchWidthOrHeight = Config.Bind(
+                "General",
+                "MatchWidthOrHeight",
+                1f,
+                "0 = width, 1 = height. Only used if ScreenMatchMode is set to MatchWidthOrHeight"
+                );
 
-            UseResolutionScaleFactor = Config.Bind("General",
-                                     "UseScaleFactor",
-                                     true,
-                                     "If true, uses the ScaleFactor value calculated from your current resolution instead of the value set in ScaleFactor"
-                                    );
+            ApplyToMenu = Config.Bind(
+                "General",
+                "ApplyToMenu",
+                false,
+                "Whether the screen match mode settings should be applied to the menu. Doesn't seem to be needed in most cases."
+                );
 
             Harmony.CreateAndPatchAll(typeof(Patches));
         }
-
     }
 
     [HarmonyPatch]
@@ -56,28 +57,26 @@ namespace StarsandUIARFix
         [HarmonyPostfix]
         public static void UpdateGUIAR(UltimateSurvival.GUISystem.GUIController __instance)
         {
-            if(Plugin.UseScaleFactor.Value)
-            {
-                __instance.Canvas.scaleFactor = Plugin.UseResolutionScaleFactor.Value ? Plugin.ResolutionScaleFactor : Plugin.ScaleFactor.Value;
-                Plugin.Log.LogInfo($"Changed GUI canvas scale factor to {__instance.Canvas.scaleFactor}");
-            }
-            else
-            {
-                __instance.m_GUICamera.aspect = 16 / 9f;
-                Plugin.Log.LogInfo($"Changed GUICamera aspect ratio to {__instance.m_GUICamera.aspect}");
-            }
+            var cs = __instance.Canvas.gameObject.GetComponent<CanvasScaler>();
+            UpdateCanvasScalerSettings(cs);
         }
 
         [HarmonyPatch(typeof(MenuScene), nameof(MenuScene.Start))]
         [HarmonyPostfix]
         public static void UpdateMenuScaleFactor(MenuScene __instance)
         {
-            if (Plugin.UseScaleFactor.Value)
+            if (Plugin.ApplyToMenu.Value)
             {
-                var canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-                canvas.scaleFactor = Plugin.UseResolutionScaleFactor.Value ? Plugin.ResolutionScaleFactor : Plugin.ScaleFactor.Value;
-                Plugin.Log.LogInfo($"Changed GUI canvas scale factor to {canvas.scaleFactor}");
+                var cs = GameObject.Find("Canvas").GetComponent<CanvasScaler>();
+                UpdateCanvasScalerSettings(cs);
             }
+        }
+
+        private static void UpdateCanvasScalerSettings(CanvasScaler cs)
+        {
+            cs.screenMatchMode = Plugin.ScreenMatchMode.Value;
+            cs.matchWidthOrHeight = Plugin.MatchWidthOrHeight.Value;
+            Plugin.Log.LogInfo($"Updated GUI canvas scaler");
         }
     }
 }
